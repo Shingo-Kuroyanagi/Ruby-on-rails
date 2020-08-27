@@ -2,6 +2,15 @@ class TodolistsController < ApplicationController
   def new
   @list = List.new
   end
+
+  def create
+    list = List.new(list_params)
+    list.save
+    redirect_to '/top'
+  end
+
+  private
+  def list_params
+    params.require(:list).permit(:title, :body)
+  end
 end
-<%= form_with model:@list, url:'/todolists', local:true do |f| %>
-<% end %>
