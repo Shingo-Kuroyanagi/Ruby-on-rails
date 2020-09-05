@@ -1,20 +1,22 @@
 class BlogsController < ApplicationController
   def index
+    # 記事を全件取得
     @blogs = Blog.all
   end
 
   def show
-    @blog=Blog.find(params[:id])
+    @blog = Blog.find(params[:id])
   end
 
   def new
     @blog = Blog.new
   end
- 
+  
   def create
     blog = Blog.new(blog_params)
     blog.save
-    redirect_to blogs_path(blog.id)
+    redirect_to blog_path(blog.id)  #この行を修正
+    
   end
   
   def edit
@@ -22,12 +24,15 @@ class BlogsController < ApplicationController
   end
   
   def update
-   blog = Blog.find(params[:id])
-   blog.update(blog_params)
-   redirect_to blogs_path(blog)
+    blog = Blog.find(params[:id])
+    blog.update(blog_params)
+    redirect_to blog_path(blog)
   end
   
-  def destory
+  def destroy
+    blog = Blog.find(params[:id])
+    blog.destroy
+    redirect_to blogs_path
   end
   
   private
