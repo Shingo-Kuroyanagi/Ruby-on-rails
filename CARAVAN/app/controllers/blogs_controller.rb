@@ -22,9 +22,11 @@ class BlogsController < ApplicationController
   end
   
   def update
-   blog = Bllog.find(params[:id])
+   blog = Blog.find(params[:id])
    blog.update(blog_params)
    redirect_to blogs_path(blog)
+  end
+  def destory
   end
   
   private
